@@ -1,0 +1,187 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+#root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    min-width: 1100px; min-height: 650px;
+}
+
+#animation_op {
+    position: absolute;
+    top: 0; left: 0;
+    width: 200%; /* 200%にすることで画面が遷移してるように見せる */
+    height: 100%;
+}
+
+/*** 共通: .word-1, .word-2 ***/
+#animation_op .word-1,
+#animation_op .word-2 {
+  position: absolute;
+  top: calc(50% - 60px);
+  height: 120px;
+}
+
+/* 文字の外枠 */
+#animation_op .word-1 div,
+#animation_op .word-2 div {
+  float: left;
+  width: 100px; height: 100px;
+  border: dashed 1px #888;
+  border-right: none;
+  box-sizing: border-box;
+}
+
+/* 文字の見た目 最初は透明*/
+#animation_op .word-1 div p,
+#animation_op .word-2 div p {
+  width: 100%; height: 100%;
+  font-size: 80px;
+  color: #777;
+  text-align: center;
+  line-height: 100px;
+  opacity: 0;
+}
+
+/* 最後の文字の右側に枠を表示 */
+#animation_op .word-1 div:last-child,
+#animation_op .word-2 div:last-child { border-right: dashed 1px #888; }
+
+/* after要素でfloatを削除する */
+#animation_op .word-1:after,
+#animation_op .word-2:after {
+  content: ""; display: block; clear: both;
+}
+
+/*** 200%の状態で表示される ***/
+#animation_op .word-1 { left: calc(25% - 240px); }
+
+/*** これもそう。200%の状態で右から80px ***/
+#animation_op .word-2 { right: 80px; }
+
+/* 基本全部広げる */
+#animation_op .connect-line {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+/* 下に表示されるドットの見た目 */
+#animation_op .connect-line .point {
+  position: absolute;
+  top: calc(50% + 90px);
+  width: 20px; height: 20px;
+  background-color: #666;
+  border-radius: 50%;
+}
+
+/* 下に表示されるドットの場所 */
+#animation_op .connect-line .point-1 { left: calc(25% - 250px); }
+#animation_op .connect-line .point-2 { left: calc(25% + 350px); }
+#animation_op .connect-line .point-3 { right: 70px; transform: scale(0); }
+
+/* 表示される線の見た目と位置 */
+#animation_op .line {
+  position: absolute;
+  top: calc(50% + 99px);
+  height: 1px;
+  overflow: hidden;
+}
+
+/* この要素が移動している線の本体 after要素は元のスタイルを引き継ぐ？ */
+#animation_op .line:after {
+  content: ""; display: block;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: #000; /* 黒 */
+  transform: translateX(-100%);
+}
+
+/* 線の表示幅 */
+#animation_op .line-1 { width: 600px; left: calc(25% - 240px); }
+#animation_op .line-2 {
+  width: calc(((50% - 480px) / 2) + (50% - 80px));
+  right: 80px;
+}
+
+
+/*** .word-1 ***/
+#animation_op .word-1 div:nth-child(1) p { animation: show-word 0.6s ease-out 0.0s forwards; }
+#animation_op .word-1 div:nth-child(2) p { animation: show-word 0.6s ease-out 0.2s forwards; }
+#animation_op .word-1 div:nth-child(3) p { animation: show-word 0.6s ease-out 0.4s forwards; }
+#animation_op .word-1 div:nth-child(4) p { animation: show-word 0.6s ease-out 0.6s forwards; }
+#animation_op .word-1 div:nth-child(5) p { animation: show-word 0.6s ease-out 0.8s forwards; }
+#animation_op .word-1 div:nth-child(6) p { animation: show-word 0.6s ease-out 1.0s forwards; }
+
+/*** .line-1 ***/
+/* 色を指定していないline1要素に対して、色を付けたafter要素を右に動かす */
+#animation_op .line-1:after { animation: draw-line 1.2s ease 0s forwards; }
+
+/*** #animation_op: ここで左に移動する ***/
+#animation_op { animation: move-animation_op 1.0s ease 1.2s forwards; }
+
+/*** .line-2 ***/
+#animation_op .line-2:after { animation: slash-line 1.6s ease 1.2s forwards; }
+
+/*** .point-3 ***/
+#animation_op .point-3 { animation: put-point 1s ease-out 2s forwards; }
+
+/*** .word-2 ***/
+#animation_op .word-2 div:nth-child(1) p { animation: show-word 0.6s ease-out 1.6s forwards; }
+#animation_op .word-2 div:nth-child(2) p { animation: show-word 0.6s ease-out 1.8s forwards; }
+#animation_op .word-2 div:nth-child(3) p { animation: show-word 0.6s ease-out 2.0s forwards; }
+#animation_op .word-2 div:nth-child(4) p { animation: show-word 0.6s ease-out 2.2s forwards; }
+
+/*** .word-2: ここで回転させる ***/
+#animation_op .word-2 { animation: rotate-word-2 0.4s ease 2.8s forwards; }
+
+/*********************************************************************************
+  keyframes
+**********************************************************************************/
+/* 浮き出るように文字を表示させる */
+@keyframes show-word {
+  0%   { transform: scale(0.4); opacity: 0; }
+  70%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* 左から線を出現させる */
+@keyframes draw-line {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(0%); }
+}
+
+/* 線を通り過ぎるように表示させる */
+@keyframes slash-line {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+/* 左に移動させて画面が遷移してるように見せる */
+@keyframes move-animation_op {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 点を表示させて消す */
+@keyframes put-point {
+  0%   { transform: scale(0); }
+  70%  { transform: scale(2); }
+  100% { transform: scale(0); }
+}
+/* 文字を回転させる */
+@keyframes rotate-word-2 {
+  0%   { transform: rotate(0deg); opacity: 1; }
+  100% { transform: rotate(-150deg); opacity: 0; }
+}
