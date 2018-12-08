@@ -1,0 +1,42 @@
+<!--
+文字を二画面にわたって移動させて、アニメのOPみたいに表示させる
+参考文献 : https://yuki540.hatenablog.jp/entry/2018/03/04/%E3%83%8B%E3%83%BC%E3%83%88%E3%81%AB%E5%AD%A6%E3%81%B6CSS_Animation%E6%BC%94%E5%87%BA%E8%AC%9B%E5%BA%A7_%EF%BC%92%E6%99%82%E9%96%93%E7%9B%AE
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css">
+    <title>アニメのオープニング感がある文字移動アニメーション</title>
+</head>
+<body>
+
+    <main id='root'>
+        <section id='animation_op'>
+            <div class="word-1">
+                <div><p>ア</p></div>
+                <div><p>二</p></div>
+                <div><p>メ</p></div>
+                <div><p>の</p></div>
+                <div><p>O</p></div>
+                <div><p>P</p></div>
+            </div>
+            <div class="word-2">
+                <div><p>み</p></div>
+                <div><p>た</p></div>
+                <div><p>い</p></div>
+                <div><p>な</p></div>
+            </div>
+            <div class="connect-line">
+                <div class="line line-1"></div>
+                <div class="line line-2"></div>
+                <div class="point point-1"></div>
+                <div class="point point-2"></div>
+                <div class="point point-3"></div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
