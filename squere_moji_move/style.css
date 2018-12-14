@@ -1,0 +1,198 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+#root {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: #eee;
+    min-width: 1100px; min-height: 650px;
+}
+
+#squere_moni_move {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#squere_moni_move .message-panel {
+    position: absolute;
+    top: calc(50% - 180px); right: 80px;
+    width: 360px; height: 360px;
+    transform: rotate(90deg);
+    /* background-color: #8a7; */
+}
+
+#squere_moni_move .message-panel .message {
+    position: absolute;
+    top: 0; left: 0;
+    width : 100%; height: 100%;
+}
+
+
+#squere_moni_move .message-panel .message .char {
+    float: left;
+    width: 170px; height: 170px;
+    font-size: 150px;
+    color: #333;
+    text-align: center;
+    line-height: 170px;
+    opacity: 0;
+}
+
+#squere_moni_move .message-panel .message .text {
+    position: absolute;
+    top: 150px; left: 40px;
+    width: 320px; height: 30px;
+    display: block;
+    color: #555;
+    font-size: 14px;
+    line-height: 30px;
+    opacity: 0;
+}
+
+#squere_moni_move .message-panel .message:after {
+    content: "";
+    position: absolute;
+    top : 0; left: 0;
+    background-color: #5D97BD;
+    width: 15px; height: 100%;
+}
+
+/********************************************************************************
+  アニメーションをつける
+*********************************************************************************/
+/* 四角の移動 */
+#squere_moni_move .message-panel {
+    animation: rotate_squere 0.7s ease 0s forwards,
+               move_to_left 0.5s ease 1.0s forwards,
+               move_to_right 0.5s ease 2.4s forwards,
+               circlr_squere 1.0s ease 3.8s forwards;
+ }
+
+/* 最初の四角 */
+#squere_moni_move .message-panel .message:nth-child(1) .char:nth-child(1) {  animation: show_char 0.2s ease 0s forwards; }
+#squere_moni_move .message-panel .message:nth-child(1) .char:nth-child(2) {  animation: show_char 0.2s ease 0.1s forwards; }
+#squere_moni_move .message-panel .message:nth-child(1) .char:nth-child(3) {  animation: show_char 0.2s ease 0.3s forwards; }
+#squere_moni_move .message-panel .message:nth-child(1) .char:nth-child(4) {  animation: show_char 0.2s ease 0.5s forwards; }
+
+#squere_moni_move .message-panel .message:nth-child(1) { animation: fadeout 0.5s ease 1.2s forwards; }
+
+#squere_moni_move .message-panel .message:nth-child(1) .text { animation: show_text 0.4s ease 0.5s forwards; }
+
+#squere_moni_move .message-panel .message:nth-child(1):after { animation: show_bar 1.0s ease 0s forwards; }
+
+/* ２個目の四角 */
+#squere_moni_move .message-panel .message:nth-child(2) .char:nth-child(1) {  animation: show_char 0.2s ease 1.1s forwards; }
+#squere_moni_move .message-panel .message:nth-child(2) .char:nth-child(2) {  animation: show_char 0.2s ease 1.3s forwards; }
+#squere_moni_move .message-panel .message:nth-child(2) .char:nth-child(3) {  animation: show_char 0.2s ease 1.5s forwards; }
+#squere_moni_move .message-panel .message:nth-child(2) .char:nth-child(4) {  animation: show_char 0.2s ease 1.7s forwards; }
+
+#squere_moni_move .message-panel .message:nth-child(2) .text { animation: show_text 0.4s ease 1.8s forwards; }
+
+/* #squere_moni_move .message-panel .message:nth-child(2):after { animation: show_bar 1.0s ease 1.4s forwards; } */
+
+#squere_moni_move .message-panel .message:nth-child(2) { animation: fadeout 0.5s ease 2.6s forwards; }
+
+/* 3個目の四角 */
+#squere_moni_move .message-panel .message:nth-child(3) .char:nth-child(1) {  animation: show_char 0.2s ease 2.6s forwards; }
+#squere_moni_move .message-panel .message:nth-child(3) .char:nth-child(2) {  animation: show_char 0.2s ease 2.8s forwards; }
+#squere_moni_move .message-panel .message:nth-child(3) .char:nth-child(3) {  animation: show_char 0.2s ease 3.0s forwards; }
+#squere_moni_move .message-panel .message:nth-child(3) .char:nth-child(4) {  animation: show_char 0.2s ease 3.2s forwards; }
+
+#squere_moni_move .message-panel .message:nth-child(3) .text { animation: show_text 0.4s ease 3.2s forwards; }
+
+#squere_moni_move .message-panel .message:nth-child(3) { animation: fadeout 0.7s ease 3.8s forwards; }
+
+/********************************************************************************
+  keyframes
+*********************************************************************************/
+
+/* 四角を左に移動させる */
+@keyframes move_to_left {
+    0% {
+        right: 80px:
+    }
+    100% {
+        right: calc(100% - 450px);
+    }
+}
+
+/* 四角を右に移動させる */
+@keyframes move_to_right {
+    0% {
+        right: calc(100% - 450px);
+    }
+    100% {
+        right: 80px:
+    }
+}
+
+/* 最初の四角を表示させる。 */
+@keyframes rotate_squere {
+    0% {
+        transform: rotate(90deg);
+    }
+    60% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* 四角を回転させる */
+@keyframes circlr_squere {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(-1080deg);}
+
+}
+
+/* 文字を表示させる */
+@keyframes show_char {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+/* messageを消す */
+@keyframes fadeout {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+@keyframes fadein {
+    0% { opacity:  0; }
+    100% {opacity:  1; }
+}
+
+/* textをフェードインさせる */
+@keyframes show_text {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+/* 四角の端にある横棒をフェードインさせる */
+@keyframes show_bar {
+  0%   { width: 300px; opacity: 0; }
+  100% { width: 15px; opacity: 1; }
+}
