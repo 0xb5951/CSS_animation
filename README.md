@@ -7,3 +7,6 @@
 
 - moji_move_like_anime_op  
 アニメのOPみたいに文字を移動させるアニメーション
+
+- squere_moji_move
+四角く区切られた文字が移動するアニメーション
