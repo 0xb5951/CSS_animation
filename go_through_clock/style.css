@@ -1,19 +1,19 @@
 /********************************* 初期化 ***************************************/
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 .stage {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  overflow: hidden;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
 }
 .stage_inner,
 .stage_filter {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
 }
 
 .stage_filter { box-shadow: 0 0 300px #444 inset; }
@@ -27,7 +27,6 @@
     width: 500px; height: 500px;
     background-color: rgba(100, 100, 100, 0.1);
     border-radius: 50%;
-    display: none;
 }
 
 /* clock_frame(これはclockに対してabsolute) */
@@ -102,22 +101,22 @@
 
 /* 時計の針のスタイル */
 .clock_hand {
-  position: absolute;
-  top: 35px; left: 35px;
-  width: calc(100% - 70px); height: calc(100% - 70px);
+    position: absolute;
+    top: 35px; left: 35px;
+    width: calc(100% - 70px); height: calc(100% - 70px);
 }
 .clock_hand div {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
 }
 .clock_hand div:after {
-  content: ""; display: block;
-  position: absolute;
-  top: 0; left: calc(50% - 5px);
-  width: 10px;
-  background-color: #444;
-  border-radius: 5px;
+    content: ""; display: block;
+    position: absolute;
+    top: 0; left: calc(50% - 5px);
+    width: 10px;
+    background-color: #444;
+    border-radius: 5px;
 }
 
 .clock_hand div:nth-child(1):after { height: 50%; } /* 長針 */
@@ -151,22 +150,22 @@
 
 .memories__frame:before,
 .memories__frame:after {
-  content: ""; display: block;
-  position: absolute;
-  border-radius: 50%;
-  box-sizing: border-box;
+    content: ""; display: block;
+    position: absolute;
+    border-radius: 50%;
+    box-sizing: border-box;
 }
 
 .memories__frame:before {
-  top: 25px; left: 25px;
-  width: calc(100% - 50px); height: calc(100% - 50px);
-  border: solid 1px #444;
+    top: 25px; left: 25px;
+    width: calc(100% - 50px); height: calc(100% - 50px);
+    border: solid 1px #444;
 }
 .memories__frame:after {
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  border-top: solid 10px #444;
-  border-bottom: solid 10px #444;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-top: solid 10px #444;
+    border-bottom: solid 10px #444;
 }
 
 /* 回想パネルのスタイル */
@@ -197,6 +196,26 @@
 .memories__image_type_4 { background-image: url(./images/4.jpeg); }
 .memories__image_type_5 { background-image: url(./images/5.jpeg); }
 
+/*** 立体的に表示させる ***/
+/* 基準位置を設定 */
+.stage {
+    perspective: 20px;
+}
+
+/* 子要素を立体的に配置可能にする */
+.stage_inner {
+    transform-style: preserve-3d;
+}
+
+/* これまで作成した要素を立体的に配置 */
+.clock { transform: translateZ(50px) scale(calc(1 - (50 / 100))); }
+.memories_layer_1 { transform: translateZ(150px) scale(calc(1 - (150 / 200))); }
+.memories_layer_2 { transform: translateZ(250px) scale(calc(1 - (250 / 300))); }
+.memories_layer_3 { transform: translateZ(350px) scale(calc(1 - (350 / 400))); }
+.memories_layer_4 { transform: translateZ(450px) scale(calc(1 - (450 / 500))); }
+.memories_layer_5 { transform: translateZ(550px) scale(calc(1 - (550 / 600))); }
+
+
 /************************************** アニメーションを付与 *****************************************************/
 /* 長針 */
 .clock_hand div:nth-child(1) { animation: rotate4320 30s linear 0s infinite; }
@@ -207,16 +226,40 @@
 /* 回想パネルの外枠 */
 .memories__frame:after { animation: rotate360 3.5s linear 0s infinite; }
 
+/* 立体的に移動させる */
+.stage {
+    animation:
+    camera 8s ease 0s forwards,
+    camera 4s ease 8s reverse forwards;
+
+}
+
+.stage_inner {
+    animation: sway 0.7s ease-in-out 0s alternate infinite;
+}
+
 /************************************** keyframeを定義 *****************************************************/
 
 /* 短針を一回転させる */
 @keyframes rotate360 {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
 
 /* 長針を12回転させる */
 @keyframes rotate4320 {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(4320deg); }
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(4320deg); }
+}
+
+/* 奥行きを言ったり来たりする */
+@keyframes camera {
+    from {perspective: 20px;}
+    to {perspective: 600px;}
+}
+
+/* 回想パネルをふわふわさせる */
+@keyframes sway {
+    from { transform: translate(3px, 3px); }
+    to   { transform: translate(-3px, -3px); }
 }
