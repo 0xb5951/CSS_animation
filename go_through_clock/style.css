@@ -1,0 +1,157 @@
+/********************************* 初期化 ***************************************/
+* {
+  margin: 0;
+  padding: 0;
+}
+.stage {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+}
+.stage_inner,
+.stage_filter {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+.stage_filter { box-shadow: 0 0 300px #444 inset; }
+
+/********************************* スタイルを付与 ***************************************/
+
+/* clock本体 */
+.clock {
+    position: absolute;
+    top: calc(50% - 250px); left: calc(50% - 250px);
+    width: 500px; height: 500px;
+    background-color: rgba(100, 100, 100, 0.1);
+    border-radius: 50%;
+}
+
+/* clock_frame(これはclockに対してabsolute) */
+.clock_frame {
+    position: absolute;
+    top: 20px; left: 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    /* background-color: #000; */
+}
+
+.clock_frame:before,
+.clock_frame:after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: solid 1px #444;
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+}
+
+.clock_frame:after {
+    top: 10px; left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+}
+
+/* 時刻を表す線 */
+.clock_frame div {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+}
+
+.clock_frame div:after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    background-color: #444;
+    display: block;
+    top: 0px; left: calc(50% - 2.5px);
+}
+
+/* 24分割して回転 */
+.clock_frame div:nth-child(1)  { transform: rotate(0deg); }
+.clock_frame div:nth-child(2)  { transform: rotate(15deg); }
+.clock_frame div:nth-child(3)  { transform: rotate(30deg); }
+.clock_frame div:nth-child(4)  { transform: rotate(45deg); }
+.clock_frame div:nth-child(5)  { transform: rotate(60deg); }
+.clock_frame div:nth-child(6)  { transform: rotate(75deg); }
+.clock_frame div:nth-child(7)  { transform: rotate(90deg); }
+.clock_frame div:nth-child(8)  { transform: rotate(105deg); }
+.clock_frame div:nth-child(9)  { transform: rotate(120deg); }
+.clock_frame div:nth-child(10) { transform: rotate(135deg); }
+.clock_frame div:nth-child(11) { transform: rotate(150deg); }
+.clock_frame div:nth-child(12) { transform: rotate(165deg); }
+.clock_frame div:nth-child(13) { transform: rotate(180deg); }
+.clock_frame div:nth-child(14) { transform: rotate(195deg); }
+.clock_frame div:nth-child(15) { transform: rotate(210deg); }
+.clock_frame div:nth-child(16) { transform: rotate(225deg); }
+.clock_frame div:nth-child(17) { transform: rotate(240deg); }
+.clock_frame div:nth-child(18) { transform: rotate(255deg); }
+.clock_frame div:nth-child(19) { transform: rotate(270deg); }
+.clock_frame div:nth-child(20) { transform: rotate(285deg); }
+.clock_frame div:nth-child(21) { transform: rotate(300deg); }
+.clock_frame div:nth-child(22) { transform: rotate(315deg); }
+.clock_frame div:nth-child(23) { transform: rotate(330deg); }
+.clock_frame div:nth-child(24) { transform: rotate(345deg); }
+
+/* 時計の針のスタイル */
+.clock_hand {
+  position: absolute;
+  top: 35px; left: 35px;
+  width: calc(100% - 70px); height: calc(100% - 70px);
+}
+.clock_hand div {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+.clock_hand div:after {
+  content: ""; display: block;
+  position: absolute;
+  top: 0; left: calc(50% - 5px);
+  width: 10px;
+  background-color: #444;
+  border-radius: 5px;
+}
+
+.clock_hand div:nth-child(1):after { height: 50%; } /* 長針 */
+.clock_hand div:nth-child(2):after { height: 40%; top: 10%; } /* 短針 */
+
+/* 時計の上に乗せる画像のスタイル */
+.clock_image {
+    position: absolute;
+    top: 45px; left: 45px;
+    width: calc(100% - 90px); height: calc(100% - 90px);
+    background-image: url(./images/subaru.png);
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/************************************** アニメーションを付与 *****************************************************/
+/* 長針 */
+.clock_hand div:nth-child(1) { animation: rotate4320 30s linear 0s infinite; }
+
+/* 短針 */
+.clock_hand div:nth-child(2) { animation: rotate360 30s linear 0s infinite; }
+
+
+/************************************** keyframeを定義 *****************************************************/
+
+/* 短針を一回転させる */
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* 長針を12回転させる */
+@keyframes rotate4320 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(4320deg); }
+}
