@@ -27,6 +27,7 @@
     width: 500px; height: 500px;
     background-color: rgba(100, 100, 100, 0.1);
     border-radius: 50%;
+    display: none;
 }
 
 /* clock_frame(これはclockに対してabsolute) */
@@ -133,6 +134,68 @@
     background-repeat: no-repeat;
 }
 
+/* 回想フレームの枠スタイル */
+.memories {
+    position: absolute;
+    top: calc(50% - 250px);
+    left: calc(50% - 250px);
+    width: 500px; height: 500px;
+}
+
+.memories__frame {
+    position: absolute;
+    top: 0px; left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.memories__frame:before,
+.memories__frame:after {
+  content: ""; display: block;
+  position: absolute;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.memories__frame:before {
+  top: 25px; left: 25px;
+  width: calc(100% - 50px); height: calc(100% - 50px);
+  border: solid 1px #444;
+}
+.memories__frame:after {
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-top: solid 10px #444;
+  border-bottom: solid 10px #444;
+}
+
+/* 回想パネルのスタイル */
+.memories__image {
+    position: absolute;
+    top: 50px; left: 50px;
+    width: calc(100% - 100px);
+    height: calc(100% - 100px);
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+}
+
+.memories__image::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #333 inset;
+}
+
+/* パネルの画像 */
+.memories__image_type_1 { background-image: url(./images/1.jpeg); }
+.memories__image_type_2 { background-image: url(./images/2.jpeg); }
+.memories__image_type_3 { background-image: url(./images/3.jpeg); }
+.memories__image_type_4 { background-image: url(./images/4.jpeg); }
+.memories__image_type_5 { background-image: url(./images/5.jpeg); }
 
 /************************************** アニメーションを付与 *****************************************************/
 /* 長針 */
@@ -141,6 +204,8 @@
 /* 短針 */
 .clock_hand div:nth-child(2) { animation: rotate360 30s linear 0s infinite; }
 
+/* 回想パネルの外枠 */
+.memories__frame:after { animation: rotate360 3.5s linear 0s infinite; }
 
 /************************************** keyframeを定義 *****************************************************/
 
