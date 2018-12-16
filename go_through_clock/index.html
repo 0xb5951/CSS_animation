@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css">
+    <title>複数の時計を通り抜けたり、戻ったりするアニメーション</title>
+</head>
+
+<body>
+    <main class="stage">
+        <div class="stage_inner">
+            <!-- 時計部分 -->
+
+            <section class="clock">
+                <div class="clock_frame">
+                    <div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div>
+                    <div></div><div></div><div></div><div></div>
+                </div>
+                <div class="clock_hand">
+                    <div></div><div></div>
+                </div>
+                <div class="clock_image"></div>
+            </section>
+
+            <!-- 回想リング部分 -->
+            <section class="memories memories_layer_1">
+                <div class="memories__image memories__image_type_1"></div>
+                <div class="memories__frame"></div>
+            </section>
+            <section class="memories memories_layer_2">
+                <div class="memories__image memories__image_type_2"></div>
+                <div class="memories__frame"></div>
+            </section>
+            <section class="memories memories_layer_3">
+                <div class="memories__image memories__image_type_3"></div>
+                <div class="memories__frame"></div>
+            </section>
+            <section class="memories memories_layer_4">
+                <div class="memories__image memories__image_type_4"></div>
+                <div class="memories__frame"></div>
+            </section>
+            <section class="memories memories_layer_5">
+                <div class="memories__image memories__image_type_5"></div>
+                <div class="memories__frame"></div>
+            </section>
+
+        </div>
+    </main>
+    <div class="stage_filter"></div> <!-- box_shadowで影をつけて、回想シーンっぽくする -->
+</body>
+</html>
