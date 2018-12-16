@@ -10,3 +10,9 @@
 
 - squere_moji_move
 四角く区切られた文字が移動するアニメーション
+
+- go_through_clock
+時計と回想パネルを立体的に移動するアニメーション
+
+- hopping_sprache
+はじけて拡散しながら消えるアニメーション
