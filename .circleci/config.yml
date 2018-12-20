@@ -1,0 +1,18 @@
+version: 2
+
+jobs:
+    build: #jobname
+    docker:
+    - image: circleci/python:3.6.5
+
+    working_directory: ~/
+    steps:
+        - checkout
+        - run:
+            name: execute hello world
+            command: echo 'hello world'
+workflows:
+    version: 2
+    build_test:
+        jobs:
+            - build
