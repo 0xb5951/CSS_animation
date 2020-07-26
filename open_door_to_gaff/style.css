@@ -1,0 +1,198 @@
+/********************************* 初期化 ***************************************/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.root {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #C7C7C9;
+    overflow: hidden;
+}
+
+/********************************* スタイルを付与 ***************************************/
+
+/*** 天輪 ***/
+.root::after,
+.root::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.root::before {
+    width: 250px; height: 250px;
+    background-color: #B1B1B1;
+    z-index: 999;
+    top: calc(50% - 125px); left: calc(50% - 125px);
+    /* opacity: 0; */
+}
+
+.root::after {
+    top: calc(50% - 100px); left: calc(50% - 100px);
+    width: 200px; height: 200px;
+    background-color: #000000;
+    z-index: 999;
+    box-shadow: 0 0 15px #E6E6E6;
+    /* opacity: 0; */
+}
+
+.gaff {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 同心円状に表示させる */
+.gaff div {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%); /* 自分の半分だけ戻す */
+    /* display: none; */
+}
+
+/* それぞれの円に色を付ける。 */
+.gaff div:nth-child(1)::after { background: radial-gradient(#0095D9, rgba(255, 255, 255, 0.8)); } /*空*/
+.gaff div:nth-child(2)::after { background-color: #BF0000; }
+.gaff div:nth-child(3)::after { background-color: #110000; }
+.gaff div:nth-child(4)::after { background-color: #910000; opacity: 0.8;}
+.gaff div:nth-child(5)::after { background-color: #750000; }
+.gaff div:nth-child(6)::after { background-color: #310000; }
+.gaff div:nth-child(7)::after { background-color: #FE0000; }
+
+
+/* .gaff div:nth-child(13)::after { background-color: #B1B1B1; } */
+.gaff div:nth-child(14)::after { background-color: #B1B1B1; }
+.gaff div:nth-child(15)::after { background-color: #FE0000; }
+
+/* それぞれの最大値を指定 */
+.gaff div:nth-child(1) { width: 150vmax; height: 150vmax; }
+.gaff div:nth-child(2) { width: 80vmax; height: 80vmax; }
+.gaff div:nth-child(3) { width: 75vmax; height: 75vmax; }
+.gaff div:nth-child(4) { width: 70vmax; height: 70vmax; }
+.gaff div:nth-child(5) { width: 65vmax; height: 65vmax; }
+.gaff div:nth-child(6) { width: 60vmax; height: 60vmax; }
+
+/* 後から来るやつ */
+.gaff div:nth-child(7) { width: 55vmax; height: 55vmax; }
+.gaff div:nth-child(8) { width: 50vmax; height: 50vmax; }
+.gaff div:nth-child(9) { width: 45vmax; height: 45vmax; }
+.gaff div:nth-child(10) { width: 40vmax; height: 40vmax; }
+.gaff div:nth-child(11) { width: 35vmax; height: 35vmax; }
+.gaff div:nth-child(12) { width: 30vmax; height: 30vmax; }
+
+.gaff div:nth-child(13) { width: 25vmax; height: 25vmax; }
+
+/* 天輪の広がり*/
+.gaff div:nth-child(14) { width: 25vmax; height: 25vmax; }
+.gaff div:nth-child(15) { width: 23vmax; height: 23vmax; }
+
+.gaff div::after {
+    content: ""; display: block;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    transform: scale(0);
+    box-shadow: 0 0 10px #000;
+}
+
+/********************************* アニメーションを付与 ***************************************/
+
+/* 天輪 */
+.root::after,
+.root::before {
+    animation:
+    open_to_gaff 0.2s ease 0s forwards;
+    /* sway 0.01s ease 0.3s infinite;/ */
+}
+
+/* .root::before {
+    animation: fadeout 2.0s ease 0.82s forwards;
+} */
+
+/* 青空.衝撃波によって雲が晴れる */
+.gaff div:nth-child(1)::after {
+    animation: open_to_gaff 0.6s ease 0.1s forwards;
+}
+
+/* 最初に広がるやつ */
+.gaff div:nth-child(2)::after {
+    animation: open_to_gaff 0.3s ease 0.7s forwards;
+    /* sway 0.01s ease 0.72s infinite; */
+}
+.gaff div:nth-child(3)::after {
+    animation: open_to_gaff 0.4s ease 0.72s forwards;
+    /* sway 0.01s ease 0.72s infinite; */
+}
+.gaff div:nth-child(4)::after {
+    animation: open_to_gaff 0.5s ease 0.74s forwards;
+}
+.gaff div:nth-child(5)::after {
+    animation: open_to_gaff 0.5s ease 0.76s forwards;
+}
+.gaff div:nth-child(6)::after {
+    animation: open_to_gaff 0.5s ease 0.78s forwards;
+}
+
+/* 後から来るやつ */
+   .gaff div:nth-child(7)::after {
+    animation: open_to_gaff 2.0s ease 0.75s forwards;
+}
+.gaff div:nth-child(8)::after {
+    animation: open_to_gaff 2.0s ease 0.80s forwards;
+}
+.gaff div:nth-child(9)::after {
+    animation: open_to_gaff 2.0s ease 0.85s forwards;
+}
+.gaff div:nth-child(10)::after {
+    animation: open_to_gaff 2.0s ease 0.90s forwards;
+}
+.gaff div:nth-child(11)::after {
+    animation: open_to_gaff 2.0s ease 0.95s forwards;
+}
+.gaff div:nth-child(12)::after {
+    animation: open_to_gaff 2.0s ease 1.0s forwards;
+}
+
+.gaff div:nth-child(13)::after {
+    animation: open_to_gaff 2.0s ease 1.05s forwards;
+}
+
+/* 天輪の広がり */
+.gaff div:nth-child(14)::after {
+    animation: open_to_gaff 2.0s ease 0.80s forwards;
+}
+.gaff div:nth-child(15)::after {
+    animation: open_to_gaff 2.0s ease 0.80s forwards;
+}
+
+
+
+/********************************* keyframesを定義 ***************************************/
+/* 扉を開く */
+@keyframes open_to_gaff {
+    from { transform: scale(0);}
+    to { transform: scale(1);}
+}
+
+/* 空を青から赤に変える */
+
+/* 天輪をぶらす */
+@keyframes sway {
+    from { box-shadow: 0 0 30px #000;}
+    to {box-shadow: 0 0 1px #000;}
+}
+
+@keyframes fadein {
+    from { opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeout {
+    from { opacity: 1;}
+    to {opacity: 0;}
+}
